@@ -19,38 +19,40 @@ describe('Game tests', function () {
 
   it('Should retrieve the number neighbours from a given position', function () {
     const board = [
-      [Cell(!!1), Cell(!!0), Cell(!!1)],
-      [Cell(!!1), Cell(!!1), Cell(!!0)],
-      [Cell(!!0), Cell(!!0), Cell(!!1)],
-      [Cell(!!0), Cell(!!0), Cell(!!1)]
+      [Cell(true), Cell(false), Cell(true)],
+      [Cell(true), Cell(true), Cell(false)],
+      [Cell(false), Cell(false), Cell(true)],
+      [Cell(false), Cell(false), Cell(true)]
     ];
-    assert.deepStrictEqual(getNeighbours(board, 0, 0), 2, '[0,0]');
-    assert.deepStrictEqual(getNeighbours(board, 0, 1), 4, '[0,1]');
-    assert.deepStrictEqual(getNeighbours(board, 0, 2), 1, '[0,2]');
-    assert.deepStrictEqual(getNeighbours(board, 1, 0), 2, '[1,0]');
+    assert.deepStrictEqual(getNeighbours(board, 0, 0), 4, '[0,0]');
+    assert.deepStrictEqual(getNeighbours(board, 0, 1), 5, '[0,1]');
+    assert.deepStrictEqual(getNeighbours(board, 0, 2), 4, '[0,2]');
+    assert.deepStrictEqual(getNeighbours(board, 1, 0), 4, '[1,0]');
     assert.deepStrictEqual(getNeighbours(board, 1, 1), 4, '[1,1]');
-    assert.deepStrictEqual(getNeighbours(board, 1, 2), 3, '[1,2]');
-    assert.deepStrictEqual(getNeighbours(board, 2, 0), 2, '[2,0]');
+    assert.deepStrictEqual(getNeighbours(board, 1, 2), 5, '[1,2]');
+    assert.deepStrictEqual(getNeighbours(board, 2, 0), 4, '[2,0]');
     assert.deepStrictEqual(getNeighbours(board, 2, 1), 4, '[2,1]');
-    assert.deepStrictEqual(getNeighbours(board, 2, 2), 2, '[2,2]');
-    assert.deepStrictEqual(getNeighbours(board, 3, 0), 0, '[3,0]');
-    assert.deepStrictEqual(getNeighbours(board, 3, 1), 2, '[3,1]');
-    assert.deepStrictEqual(getNeighbours(board, 3, 2), 1, '[3,2]');
+    assert.deepStrictEqual(getNeighbours(board, 2, 2), 3, '[2,2]');
+    assert.deepStrictEqual(getNeighbours(board, 3, 0), 4, '[3,0]');
+    assert.deepStrictEqual(getNeighbours(board, 3, 1), 4, '[3,1]');
+    assert.deepStrictEqual(getNeighbours(board, 3, 2), 3, '[3,2]');
   });
 
   it('Should pass the turn and update the board', function () {
     const board = [
-      [Cell(!!1), Cell(!!0), Cell(!!1)],
-      [Cell(!!1), Cell(!!1), Cell(!!0)],
-      [Cell(!!1), Cell(!!1), Cell(!!0)],
-      [Cell(!!0), Cell(!!0), Cell(!!1)]
+      [Cell(true), Cell(false), Cell(true)],
+      [Cell(true), Cell(true), Cell(false)],
+      [Cell(true), Cell(true), Cell(false)],
+      [Cell(false), Cell(false), Cell(true)],
+      [Cell(false), Cell(false), Cell(false)]
     ];
 
     const expect = [
-      [Cell(!!1), Cell(!!0), Cell(!!0)],
-      [Cell(!!0), Cell(!!0), Cell(!!1)],
-      [Cell(!!1), Cell(!!0), Cell(!!1)],
-      [Cell(!!0), Cell(!!1), Cell(!!0)]
+      [Cell(true), Cell(false), Cell(true)],
+      [Cell(false), Cell(false), Cell(false)],
+      [Cell(false), Cell(false), Cell(false)],
+      [Cell(true), Cell(true), Cell(true)],
+      [Cell(true), Cell(true), Cell(true)]
     ];
 
     const newGeneration = nextGeneration(board);

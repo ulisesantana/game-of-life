@@ -1,8 +1,11 @@
 import { CellFactory } from './Cell';
 import { Cell, Board } from './types';
 
-const getCell = (b: Board, x: number, y: number): boolean =>
-  !!b[x] && !!b[x][y] ? b[x][y].value : false;
+const getCell = (b: Board, x: number, y: number): boolean => {
+  x = x >= b.length ? 0 : x < 0 ? b.length - 1 : x;
+  y = y >= b[0].length ? 0 : y < 0 ? b[0].length - 1 : y;
+  return b[x][y].value;
+}
 
 const print = (b: Board): void => {
   const board: string = b.reduce((acc, row) =>
